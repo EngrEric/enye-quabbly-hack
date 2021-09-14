@@ -5,7 +5,7 @@ import location from "../images/location.svg";
 const Landing = () => {
   return (
     <>
-    <div className="flex justify-around align-middle items-center">
+    <div className="flex flex-wrap md:flex-nowrap justify-around align-middle items-center">
       <div  className='ml-20'>
       <h2 className='text-3xl mt-5 xxl:text-5xl font-manrope leading-loose font-black'>A Penny A Day, Brings The Target Closer.</h2>
         <p className='leading-relaxed xxl:text-3xl xxl:leading-loose mt-5 text-xl'>
