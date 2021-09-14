@@ -7,15 +7,15 @@ const Landing = () => {
     <>
     <div className="flex justify-around align-middle items-center">
       <div  className='ml-20'>
-      <h2 className='text-3xl xxl:text-5xl font-manrope leading-loose font-extrabold'>A Penny A Day, Brings The Target Closer.</h2>
-        <p className='leading-relaxed xxl:text-3xl xxl:leading-loose mt-10 text-xl'>
+      <h2 className='text-3xl mt-5 xxl:text-5xl font-manrope leading-loose font-black'>A Penny A Day, Brings The Target Closer.</h2>
+        <p className='leading-relaxed xxl:text-3xl xxl:leading-loose mt-5 text-xl'>
           We are committed to funding your dreams because we believe in your
           ability to change the world through your value propositions.
         </p>
-        <button className='transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Free</button>
+        <button className='transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Merchants</button>
       </div>
 
-      <img className='xxl:mt-20' src={homeImg} alt='landing image' />
+      <img className='xxl:mt-20 mt-10' src={homeImg} alt='landing image' />
     </div>
     <div className='flex items-center justify-center w-2/5 mb-5 mx-auto shadow-xl p-8'>
       <div>

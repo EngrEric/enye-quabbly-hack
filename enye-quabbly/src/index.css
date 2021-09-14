@@ -17,6 +17,14 @@ code {
     monospace;
 }
 
+.nav-bar {
+  @apply flex items-center justify-between flex-wrap bg-white px-4 py-3 fixed w-full z-50;
+}
+
+.nav-btn {
+  @apply inline-block ml-4 text-sm px-6 py-3 leading-none border rounded hover:bg-primary mt-4 lg:mt-0;
+}
+
 .landing-img {
   background-image: url('./images/52401.png');
   width: 100%;
