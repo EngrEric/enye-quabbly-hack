@@ -1,5 +1,6 @@
 import React from "react";
 import homeImg from "../images/52401.png";
+import location from "../images/location.svg";
 
 const Landing = () => {
   return (
@@ -11,14 +12,17 @@ const Landing = () => {
           We are committed to funding your dreams because we believe in your
           ability to change the world through your value propositions.
         </p>
-        <button className='mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Free</button>
+        <button className='transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Free</button>
       </div>
 
       <img className='xxl:mt-20' src={homeImg} alt='landing image' />
     </div>
-    <div className='w-2/5 mx-auto shadow-md p-10'>
-      <input className='w-44 border border-primary ' placeholder='Enter Location' />
-      <button className='mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Find Merchant</button>
+    <div className='flex items-center justify-center w-2/5 mb-5 mx-auto shadow-xl p-8'>
+      <div>
+        <img src={location} className='inline relative left-9' />
+      <input className='border h-12 px-10 outline-none rounded-md border-primary mr-10' placeholder='Enter Location' />
+      </div>
+      <button className='rounded-md bg-primary outline-none px-5 py-3 transform hover:scale-105 text-white xxl:px-10 xxl:py-5'>Find Merchant</button>
     </div>
     </>
   );
