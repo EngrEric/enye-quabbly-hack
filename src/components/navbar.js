@@ -3,11 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import classnames from "classnames";
 import { Auth } from "@aws-amplify/auth";
-import { Hub } from "@aws-amplify/core";
-import { AmplifySignOut } from "@aws-amplify/ui-react";
-// import logo from '../../images/logo/logo.svg'
-
-// import { useSelector } from 'react-redux'
 
 const NavBar = () => {
   const { pathname } = useLocation();
