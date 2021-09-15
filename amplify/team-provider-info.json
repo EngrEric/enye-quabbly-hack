@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-adjot-dev-131746-authRole",
+      "UnauthRoleArn": "arn:aws:iam::930049332716:role/amplify-adjot-dev-131746-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::930049332716:role/amplify-adjot-dev-131746-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-adjot-dev-131746-deployment",
+      "UnauthRoleName": "amplify-adjot-dev-131746-unauthRole",
+      "StackName": "amplify-adjot-dev-131746",
+      "StackId": "arn:aws:cloudformation:ap-south-1:930049332716:stack/amplify-adjot-dev-131746/cf0334a0-1555-11ec-99b8-02ac903fd112",
+      "AmplifyAppId": "d1dx8toxgh1boi"
+    },
+    "categories": {
+      "auth": {
+        "adjot0b1ef4dc": {}
+      }
+    }
+  }
+}
