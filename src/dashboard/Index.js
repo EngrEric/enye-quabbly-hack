@@ -1,7 +1,7 @@
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React from 'react'
 
-const Index = () => {
+const Dashboard = () => {
   return (
     <div>
       <h1>dashboard</h1>
@@ -13,4 +13,4 @@ const Index = () => {
   )
 }
 
-export default Index;
+export default Dashboard;
