@@ -1,14 +1,16 @@
-import React from 'react';
-import { Switch } from 'react-router';
+import React, { useEffect } from 'react';
+import { Redirect, Switch } from 'react-router';
 import { Route, BrowserRouter } from 'react-router-dom';
-import {
-  AmplifyAuthContainer,
-  AmplifyAuthenticator,
-  AmplifySignOut,
-} from '@aws-amplify/ui-react';
 import NavBar from '../components/navbar';
 import Landing from '../home/landing';
 import Dashboard from '../dashboard/Index';
+import Posform from '../home/posform';
+import {
+  AmplifyAuthContainer,
+  AmplifyAuthenticator,
+} from '@aws-amplify/ui-react';
+import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
+import Login from '../home/login';
 
 const Routes = () => {
   return (
@@ -16,31 +18,60 @@ const Routes = () => {
       <NavBar />
       <Switch>
         <Route exact path='/' component={Landing} />
-        <AmplifyAuthContainer>
-          <AmplifyAuthenticator
-            color='red'
-            slot=''
-            formFields={[
-              {
-                type: 'email',
-                inputProps: { required: true, autocomplete: 'username' },
-              },
-              {
-                type: 'password',
-                inputProps: { required: true, autocomplete: 'new-password' },
-              },
-              {
-                type: 'phone_number',
-                inputProps: { required: true, autocomplete: 'phone-no' },
-              },
-            ]}
-          >
-            <Route exact path='/dashboard' component={Dashboard} />
-          </AmplifyAuthenticator>
-        </AmplifyAuthContainer>
+        <Route exact path='/login' component={Login} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <Posform exact path='/posform' component={Dashboard} />
       </Switch>
     </BrowserRouter>
   );
 };
 
 export default Routes;
+
+const PrivateRoute = ( { component: Component, ...rest }) => {
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+      return onAuthUIStateChange((nextAuthState, authData) => {
+          setAuthState(nextAuthState);
+          setUser(authData)
+          setLoading(false)
+      });
+  }, []);
+
+
+  return (
+    <Route
+      {...rest}
+      render={props => {
+  
+        if (authState !== AuthState.SignedIn && !loading && !user ) {
+          // not logged in so redirect to login page with the return url
+          return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        }
+
+        // authorised so return component
+        return <Component {...props} />
+      }}
+    />
+  )
+
+// return authState === AuthState.SignedIn && user ? (
+//     <div className="App">
+//         <div>Hello, {user.username}</div>
+//         <AmplifySignOut />
+//     </div>
+//   ) : (
+//     <AmplifyAuthenticator />
+// );
+}
+
+const useComponentWillMount = (cb) => {
+  const willMount = useRef(true)
+
+  if (willMount.current) cb()
+
+  willMount.current = false
+}
