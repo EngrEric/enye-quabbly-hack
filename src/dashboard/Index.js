@@ -1,5 +1,6 @@
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React from 'react';
+import { Children } from 'react';
 
 const Dashboard = () => {
   return (
@@ -70,8 +71,10 @@ const Dashboard = () => {
         <div
           className='overflow-auto bg-white'
           style={{ flexBasis: '220px' }}
-        ></div>
-        <div className='flex-1 overflow-auto'></div>
+        >customer</div>
+        <div className='flex-1 overflow-auto'>
+          {Children}
+        </div>
       </div>
     </div>
   );
