@@ -1,7 +1,7 @@
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React from 'react';
 
-const Index = () => {
+const Dashboard = () => {
   return (
     <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
       <nav className='bg-white py-2'>
@@ -77,4 +77,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Dashboard;
