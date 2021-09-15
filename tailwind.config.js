@@ -21,7 +21,9 @@ module.exports = {
       fontSize: {},
       colors: {
         primary: '#2D9CDB',
-        neutral: '091E42',
+        neutral: '#091E42',
+        'neutral-light': '#B3BAC5',
+        'neutral-dark': '#212121',
       },
       screens: {
         sm: '640px',
@@ -32,6 +34,9 @@ module.exports = {
       },
       borderColor: {
         primary: '#2D9CDB',
+      },
+      backgroundColor: {
+        active: '#DAF2FF',
       },
       backgroundSize: {
         ...defaultTheme.backgroundSize,
