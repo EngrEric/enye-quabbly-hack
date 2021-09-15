@@ -1,16 +1,13 @@
 import React, { Suspense, useEffect, useRef } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { Route, BrowserRouter } from 'react-router-dom';
-import {
-  AmplifyAuthContainer,
-  AmplifyAuthenticator,
-} from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import NavBar from '../components/navbar';
 import Landing from '../home/landing';
 import Login from '../home/login';
 import Dashboard from '../dashboard/Index';
 import Marking from '../dashboard/Marking';
+import Posform from '../home/posform';
 
 const Routes = () => {
   return (
@@ -22,6 +19,7 @@ const Routes = () => {
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/marking' component={Marking} />
+          <Posform exact path='/posform' component={Dashboard} />
         </Switch>
       </Suspense>
     </BrowserRouter>
