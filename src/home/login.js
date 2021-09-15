@@ -13,11 +13,16 @@ const Login = () => {
     Hub.listen("auth", (data) => {
       if (data.payload.event === "signIn") {
         history.push("/dashboard");
+        window.location.reload()
       }
       if (data.payload.event === "signOut") {
         history.push("/login");
         window.location.reload()
       }
+      if (data.payload.event === "signUp") {
+        history.push("/posform", {username: data.payload.data.user.username});
+      }
+      
     });
   }, []);
   return (
@@ -42,7 +47,6 @@ const Login = () => {
           ]}
         ></AmplifyAuthenticator>
       </AmplifyAuthContainer>
-      {/* <iframe src="61412175e14ba600019e1e5c" height="1000px" frameborder="0" width="100%" ></iframe> */}
     </div>
   );
 };

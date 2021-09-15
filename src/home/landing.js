@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import homeImg from "../images/52401.png";
 import location from "../images/location.svg";
 
@@ -12,7 +13,7 @@ const Landing = () => {
           We are committed to funding your dreams because we believe in your
           ability to change the world through your value propositions.
         </p>
-        <button className='transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Merchants</button>
+        <Link to='/login' className='block w-1/3 transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white xxl:px-10 xxl:py-5'>Get Started for Merchants</Link>
       </div>
 
       <img className='xxl:mt-20 mt-10' src={homeImg} alt='landing image' />

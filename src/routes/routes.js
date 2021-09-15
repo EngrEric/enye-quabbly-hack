@@ -10,6 +10,7 @@ import NavBar from '../components/navbar';
 import Landing from '../home/landing';
 import Login from '../home/login';
 import Dashboard from '../dashboard/Index';
+import Posform from '../home/posform';
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route exact path='/' component={Landing} />
         <Route exact path='/login' component={Login} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <Posform exact path='/posform' component={Dashboard} />
       </Switch>
       </Suspense>
     </BrowserRouter>
