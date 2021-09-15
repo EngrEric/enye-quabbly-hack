@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import classnames from "classnames";
 import { Auth } from "@aws-amplify/auth";
 import { Hub } from "@aws-amplify/core";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
 // import logo from '../../images/logo/logo.svg'
 
 // import { useSelector } from 'react-redux'
@@ -12,7 +13,7 @@ const NavBar = () => {
   const { pathname } = useLocation();
   const [nav, setNav] = useState(true);
   const [userInfo, setUserInfo] = useState(false);
-  //   const { userInfo } = useSelector(({ auth }) => auth.authUser)
+  const history = useHistory();
 
   const openRoutes = [
     "/",
@@ -22,7 +23,14 @@ const NavBar = () => {
     "/login",
     "/sign-up",
     "/how-it-works",
+    "/dashboard",
   ];
+
+  async function logOut() {
+    await Auth.signOut();
+    setUserInfo(false);
+    history.push('/login')
+  }
 
   useEffect(async () => {
     const user = await Auth.currentUserInfo();
@@ -106,25 +114,32 @@ const NavBar = () => {
         {!userInfo ? (
           <div>
             <Link
-              to="/dashboard"
+              to="/login"
               className="nav-btn rounded-md outline-none hover:text-white text-primary font-manrope font-medium border border-primary"
             >
               Login
             </Link>
             <Link
-              to="/dashboard"
+              to="/login"
               className="nav-btn rounded-md hover:text-gray-300 text-white bg-primary"
             >
               Sign Up
             </Link>
           </div>
-        ) : (
+        ) : pathname !== "/dashboard" ? (
           <Link
             to="/dashboard"
             className="nav-btn hover:text-gray-300 text-white bg-primary"
           >
             Dashboard
           </Link>
+        ) : (
+          <button
+            onClick={logOut}
+            className="nav-btn hover:text-gray-300 text-white bg-primary"
+          >
+            LogOut
+          </button>
         )}
       </div>
     </nav>
