@@ -19,6 +19,10 @@ const Login = () => {
         history.push("/login");
         window.location.reload()
       }
+      if (data.payload.event === "signUp") {
+        history.push("/posform", {username: data.payload.data.user.username});
+      }
+      
     });
   }, []);
   return (

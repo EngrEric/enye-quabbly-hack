@@ -29,7 +29,6 @@ const NavBar = () => {
 
   useEffect(async () => {
     const user = await Auth.currentUserInfo();
-    console.log(user);
     setUserInfo(user);
   }, []);
 
