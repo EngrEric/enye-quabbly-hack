@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .nav-bar {
   @apply flex items-center justify-between flex-wrap bg-white px-4 py-3 fixed w-full z-50;
@@ -22,7 +25,6 @@
 
 :root {
   --amplify-primary-color: #2d9cdb;
-  --amplify-tint-color: #2b9ddf;
-  --amplify-border-radius: 8px;
-  --amplify-footer-color: #2b9ddf;
+  --amplify-primary-tint: #32a4e6;
+  --amplify-primary-shade: #32a4e6;
 }
