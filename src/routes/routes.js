@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { Route, BrowserRouter } from 'react-router-dom';
 import NavBar from '../components/navbar';
@@ -11,6 +11,7 @@ import {
 } from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Login from '../home/login';
+import Customers from '../pages/customers/Customers';
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route exact path='/' component={Landing} />
         <Route exact path='/login' component={Login} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <PrivateRoute exact path='/customers' component={Customers} />
         <Posform exact path='/posform' component={Dashboard} />
       </Switch>
     </BrowserRouter>

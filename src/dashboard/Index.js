@@ -2,7 +2,7 @@ import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React from 'react';
 import { Children } from 'react';
 
-const Dashboard = () => {
+const Dashboard = ({children}) => {
   return (
     <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
       <nav className='bg-white py-2'>
@@ -73,7 +73,7 @@ const Dashboard = () => {
           style={{ flexBasis: '220px' }}
         >customer</div>
         <div className='flex-1 overflow-auto'>
-          {Children}
+          {children}
         </div>
       </div>
     </div>
