@@ -22,7 +22,6 @@
 
 :root {
   --amplify-primary-color: #2d9cdb;
-  --amplify-tint-color: #2b9ddf;
-  --amplify-border-radius: 8px;
-  --amplify-footer-color: #2b9ddf;
+  --amplify-primary-tint: #32a4e6;
+  --amplify-primary-shade: #32a4e6;
 }
