@@ -1,47 +1,43 @@
-import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React, { useEffect, useState } from 'react';
 import { notification, Table } from 'antd';
 import card from '../images/card.svg';
-import Layout from './Layout';
 import 'antd/dist/antd.min.css';
 import { columns, dataSource } from './constants';
 import Auth from '@aws-amplify/auth';
 
 const Dashboard = () => {
-
   const [userInfo, setUserInfo] = useState(false);
   const [walletDetails, setWallet] = useState({});
 
-
- async function getOrcreateWallet(){
-  const user = await Auth.currentUserInfo();
-  setUserInfo(user);
+  async function getOrcreateWallet() {
+    const user = await Auth.currentUserInfo();
+    setUserInfo(user);
 
     try {
       const wallet = await fetch('https://api.getwallets.co/v1/wallets', {
-        method:"POST",
-        body: JSON.stringify({"customer_email": user.attributes.email}),
+        method: 'POST',
+        body: JSON.stringify({ customer_email: user.attributes.email }),
         headers: {
-          "Content-Type":"application/json",
-          "Authorization": "Bearer sk_live_6140a262e7e3684960079b0e6140a262e7e3684960079b0f"
-        }
-      })
-      const json = await wallet.json()
-      setWallet(json.data)
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer sk_live_6140a262e7e3684960079b0e6140a262e7e3684960079b0f',
+        },
+      });
+      const json = await wallet.json();
+      setWallet(json.data);
     } catch (error) {
       notification.error({
-        message:"An error occured, we couldn't create wallet for you"
-      })
+        message: "An error occured, we couldn't create wallet for you",
+      });
     }
   }
 
   useEffect(() => {
-   
-    getOrcreateWallet()
+    getOrcreateWallet();
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className='grid grid-cols-12 gap-5'>
         <div className='col-span-8 p-3'>
           <div className='grid gap-7 grid-cols-3'>
@@ -304,20 +300,8 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-<<<<<<< HEAD
-      </nav>
-      <div className='flex-1 overflow-auto flex'>
-        <div
-          className='overflow-auto bg-white'
-          style={{ flexBasis: '220px' }}
-        >customer</div>
-        <div className='flex-1 overflow-auto'>
-          {children}
-        </div>
-=======
->>>>>>> master
       </div>
-    </Layout>
+    </>
   );
 };
 
