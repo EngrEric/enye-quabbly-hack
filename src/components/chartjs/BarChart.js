@@ -14,7 +14,7 @@ const data = {
 const BarChart = () => {
   return (
     <div>
-      <Bar data={data} height={370} options={{ maintainAspectRatio: false }} />
+      <Bar data={data} height={370} options={{ maintainAspectRatio: false }} className='bg-white p-5' />
     </div>
   )
 }

@@ -40,10 +40,10 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='grid grid-cols-12 gap-5 bg-white'>
+      <div className='grid grid-cols-12 gap-5 bg-gray-100 bg-opacity-90'>
         <div className='col-span-8 p-3'>
           <div className='grid gap-7 grid-cols-3'>
-            <div className='h-32 rounded-lg flex flex-col justify-center'>
+            <div className='h-32 rounded-lg bg-white flex flex-col justify-center'>
               <div className='flex justify-between px-5'>
                 <div className='h-11 w-11 rounded-full bg-primary bg-opacity-20 grid place-content-center'>
                   <i className='fa fa-users text-primary'></i>

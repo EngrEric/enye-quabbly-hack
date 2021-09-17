@@ -21,7 +21,7 @@ const data = {
 const LineChart = () => {
   return (
     <div>
-      <Line data={data} height={370} options={{ maintainAspectRatio: false }} />
+      <Line data={data} height={370} options={{ maintainAspectRatio: false }} className='bg-white p-5'  />
     </div>
   )
 }
