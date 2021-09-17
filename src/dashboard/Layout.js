@@ -53,7 +53,7 @@ const Layout = ({ location, user }) => {
   }, []);
 
   return (
-    <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
+    <div className='flex bg-dashboard flex-col h-screen'>
       <nav className=' bg-white py-2'>
         <div className='flex items-center'>
           <div

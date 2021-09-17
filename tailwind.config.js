@@ -10,6 +10,7 @@ module.exports = {
     backgroundColor: theme => ({
       ...theme('colors'),
       primary: '#2D9CDB',
+      dashboard: '#E5E5E5',
     }),
     extend: {
       fontFamily: {
