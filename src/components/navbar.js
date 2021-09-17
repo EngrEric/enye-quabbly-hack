@@ -38,7 +38,7 @@ const NavBar = () => {
     <nav className='nav-bar border-b border-gray-100'>
       <Link to='/'>
         <div className='flex items-center flex-shrink-0 text-blacker mr-6'>
-          <h1 className='font-manrope font-black text-primary text-4xl ml-20'>
+          <h1 className='font-manrope font-black text-primary text-4xl ml-10 md:ml-20'>
             Ajot
           </h1>
         </div>
