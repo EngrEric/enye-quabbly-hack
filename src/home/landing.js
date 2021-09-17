@@ -25,7 +25,7 @@ const Landing = () => {
         <p className='my-16'>
           <Link
             to='/login'
-            className='in-block transform hover:scale-105 mt-20 rounded-md bg-primary outline-none px-5 py-3 text-white md:px-10 md:py-5'
+            className='in-block transform hover:scale-105 mt-20 text-base rounded-md bg-primary outline-none px-5 py-4 text-white md:px-10 md:py-5'
           >
             Get Started for Merchants
           </Link>
@@ -36,17 +36,17 @@ const Landing = () => {
         <img src={homeImg} alt='landing' />
         
       </div>
-      <div className='w-2/3 flex items-center justify-center mb-5 mx-auto shadow-xl py-10'>
+      <div className='md:w-2/3 border ml-4 border-primary  pr-2 rounded-md md:border-none flex items-center justify-center mb-5 md:mx-auto md:shadow-xl md:py-10'>
       <img
             src={location}
-            className='inline relative left-9'
+            className='inline relative md:left-9 left-5'
             alt='locations'
           />
         <input
-          className='border h-12 px-10 outline-none rounded-md border-primary mr-10'
+          className='md:border h-12 pl-10 md:px-10 md:h-14 outline-none rounded-md md:border-primary md:mr-10'
           placeholder='Enter Location'
         />
-        <button className='rounded-md bg-primary outline-none px-5 py-3 transform hover:scale-105 text-white md:px-10 md:py-5'>
+        <button className='rounded-md bg-primary md:text-base outline-none text-xs px-2 py-3 transform hover:scale-105 text-white md:px-10 md:py-5'>
           Find Merchant
         </button>
       </div>
