@@ -1,13 +1,17 @@
-import React, { useState } from "react";
-import ApplicationMenu from "../../components/ApplicationMenu";
-import Dashboard from "../../dashboard/Index";
-import { COLUMNS, DATA } from "../../utils";
-import { Table, Radio, Divider } from 'antd';
+import React, { useState } from 'react';
+import ApplicationMenu from '../../components/ApplicationMenu';
+import Dashboard from '../../dashboard/Index';
+import { COLUMNS, DATA } from '../../utils';
+import { Table, Radio, Divider, Layout } from 'antd';
 import 'antd/dist/antd.css';
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    console.log(
+      `selectedRowKeys: ${selectedRowKeys}`,
+      'selectedRows: ',
+      selectedRows
+    );
   },
   getCheckboxProps: (record) => ({
     disabled: record.name === 'Disabled User',
@@ -17,7 +21,7 @@ const rowSelection = {
 };
 
 const Customers = () => {
-    const [selectionType, setSelectionType] = useState('checkbox');
+  const [selectionType, setSelectionType] = useState('checkbox');
 
   const [pagination, setPagination] = useState({
     pageSize: 10,
@@ -26,25 +30,24 @@ const Customers = () => {
   });
   const loading = false;
   return (
-    <Dashboard>
-      <div className="w-full flex-grow py-4 bg-white">
+    <Layout>
+      <div className='w-full flex-grow py-4 bg-white'>
         <ApplicationMenu />
         <div className='mt-8 mb-16 px-4 overflow-x-auto z-40'>
- 
-      <Table
-        rowSelection={{
-          type: 'checkbox',
-          ...rowSelection,
-        }}
-        onChange={(value) => setPagination(value)}
+          <Table
+            rowSelection={{
+              type: 'checkbox',
+              ...rowSelection,
+            }}
+            onChange={(value) => setPagination(value)}
             pagination={pagination}
             loading={loading}
-        columns={COLUMNS}
-        dataSource={DATA}
-      />
+            columns={COLUMNS}
+            dataSource={DATA}
+          />
         </div>
       </div>
-    </Dashboard>
+    </Layout>
   );
 };
 

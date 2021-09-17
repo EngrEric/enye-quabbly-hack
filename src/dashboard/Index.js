@@ -1,13 +1,11 @@
-import { AmplifySignOut } from '@aws-amplify/ui-react';
 import React, { useEffect, useState } from 'react';
 import { notification, Table } from 'antd';
 import card from '../images/card.svg';
-import Layout from './Layout';
 import 'antd/dist/antd.min.css';
 import { columns, dataSource } from './constants';
 import Auth from '@aws-amplify/auth';
 
-const Dashboard = ({ children }) => {
+const Dashboard = () => {
   const [userInfo, setUserInfo] = useState(false);
   const [walletDetails, setWallet] = useState({});
 
@@ -39,7 +37,7 @@ const Dashboard = ({ children }) => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className='grid grid-cols-12 gap-5'>
         <div className='col-span-8 p-3'>
           <div className='grid gap-7 grid-cols-3'>
@@ -302,17 +300,8 @@ const Dashboard = ({ children }) => {
             </button>
           </div>
         </div>
-        <div className='flex-1 overflow-auto flex'>
-          <div
-            className='overflow-auto bg-white'
-            style={{ flexBasis: '220px' }}
-          >
-            customer
-          </div>
-          <div className='flex-1 overflow-auto'>{children}</div>
-        </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

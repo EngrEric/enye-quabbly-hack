@@ -1,12 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, useRouteMatch } from 'react-router';
+
 import userProfile from '../images/user.png';
 import calendar from '../images/calendar.svg';
 import Sidebar from './Sidebar';
+import Dashboard from './Index';
+import Customers from '../pages/customers/Customers';
+import Auth from '@aws-amplify/auth';
 
-const Layout = ({ children }) => {
+const Layout = ({ location, user }) => {
+  const { path: _path } = useRouteMatch();
+  const [userInfo, setUserInfo] = useState(false);
+
+  const routes = [
+    {
+      path: _path,
+      exact: true,
+      comp: Dashboard,
+    },
+    {
+      path: _path + '/customers',
+      comp: Customers,
+    },
+    {
+      path: _path + '/marking',
+      //Replace with desired component
+      comp: Customers,
+    },
+    {
+      path: _path + '/settings',
+      //Replace with desired component
+      comp: Customers,
+    },
+    {
+      path: _path + '/contact',
+      //Replace with desired component
+      comp: Customers,
+    },
+    {
+      path: _path + '/terms',
+      //Replace with desired component
+      comp: Customers,
+    },
+  ];
+
+  useEffect(async () => {
+    const user = await Auth.currentUserInfo();
+    setUserInfo(user);
+  }, []);
+
   return (
     <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
-      <nav className='bg-white py-2'>
+      <nav className=' bg-white py-2'>
         <div className='flex items-center'>
           <div
             className='h-full grid place-content-center'
@@ -23,7 +68,7 @@ const Layout = ({ children }) => {
             <div className='flex justify-between items-center'>
               <div>
                 <h3 className='text-2xl font-medium font-lato text-neutral'>
-                  Welcome Manuel,
+                  Welcome {userInfo.username},
                 </h3>
                 <p className='text-sm font-lato text-neutral'>
                   Here’s an overview of your Ajot.
@@ -47,10 +92,14 @@ const Layout = ({ children }) => {
                     submit
                   </button>
                 </form>
-                <button className='text-white bg-primary mr-3 px-5 py-2 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'>
-                  <i className='fa fa-plus mr-3'></i>
-                  Add Customer
-                </button>
+                {location.pathname === '/dashboard' ? (
+                  <button className='text-white bg-primary mr-3 px-5 py-2 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'>
+                    <i className='fa fa-plus mr-3'></i>
+                    Add Customer
+                  </button>
+                ) : (
+                  ''
+                )}
                 <button className='outline-none mx-3 focus:outline-none '>
                   <img src={calendar} alt='calendar' />
                 </button>
@@ -72,9 +121,23 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </nav>
+
       <div className='flex-1 overflow-auto flex'>
         <Sidebar />
-        <div className='flex-1 overflow-auto'>{children}</div>
+        <div className='flex-1 overflow-auto'>
+          {
+            <Switch>
+              {routes.map((route, index) => (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  children={<route.comp />}
+                />
+              ))}
+            </Switch>
+          }
+        </div>
       </div>
     </div>
   );
