@@ -30,7 +30,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to='/marking'
+            to='/dashboard/marking'
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
@@ -48,7 +48,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to='/customers'
+            to='/dashboard/customers'
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
@@ -66,7 +66,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to='/settings'
+            to='/dashboard/settings'
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
@@ -85,7 +85,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to='/contact'
+            to='/dashboard/contact'
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
@@ -103,7 +103,7 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            to='/terms'
+            to='/dashboard/terms'
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
