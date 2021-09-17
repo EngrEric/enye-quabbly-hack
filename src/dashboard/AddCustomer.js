@@ -1,7 +1,20 @@
-import React from 'react';
-import { Modal } from 'antd';
+import React, { useState } from 'react';
+import { Modal, notification } from 'antd';
 
 const AddCustomer = ({ setVisible, visible }) => {
+  const [loading, setLoading] = useState(false)
+
+  const saveData = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+
+      notification.success({
+        message:"You record has been captured"
+      })
+      setVisible(false)
+    }, 1000);
+  }
   return (
     <>
       <Modal
@@ -11,7 +24,7 @@ const AddCustomer = ({ setVisible, visible }) => {
         onCancel={() => setVisible(false)}
         width={870}
         style={{ borderRadius: '8px' }}
-        footer={[]}
+        footer={false}
       >
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5'>
           <div className=''>
@@ -175,8 +188,8 @@ const AddCustomer = ({ setVisible, visible }) => {
           >
             Cancel
           </button>
-          <button className='block py-2 px-5 text-base rounded-lg bg-primary text-white ml-5'>
-            Add Customer
+          <button onClick={saveData} className='block py-2 px-5 text-base rounded-lg bg-primary text-white ml-5'>
+          {loading && <i className="fas fa-spinner"></i>} Add Customer
           </button>
         </div>
       </Modal>
