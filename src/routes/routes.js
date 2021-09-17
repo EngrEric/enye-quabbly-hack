@@ -1,16 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { Redirect, Switch } from 'react-router';
 import { Route, BrowserRouter } from 'react-router-dom';
 import NavBar from '../components/navbar';
 import Landing from '../home/landing';
-import Dashboard from '../dashboard/Index';
 import Posform from '../home/posform';
-import {
-  AmplifyAuthContainer,
-  AmplifyAuthenticator,
-} from '@aws-amplify/ui-react';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Login from '../home/login';
+import Dashboard from '../dashboard/Index';
 import Layout from '../dashboard/Layout';
 
 const Routes = () => {
@@ -22,10 +18,10 @@ const Routes = () => {
         <Route exact path='/login' component={Login} />
         <PrivateRoute path='/dashboard' component={Layout} />
         {/* <PrivateRoute exact path='/customers' component={Customers} />
-        <PrivateRoute exact path='/settings' component={Customers} />
-        <PrivateRoute exact path='/contact' component={Customers} />
-        <PrivateRoute exact path='/terms' component={Customers} />
-        <PrivateRoute exact path='/markings' component={Customers} /> */}
+      <PrivateRoute exact path='/settings' component={Customers} />
+      <PrivateRoute exact path='/contact' component={Customers} />
+      <PrivateRoute exact path='/terms' component={Customers} />
+      <PrivateRoute exact path='/markings' component={Customers} /> */}
         <Posform exact path='/posform' component={Dashboard} />
         <Route exact path='*' component={<h1>Not found</h1>} />
       </Switch>
@@ -51,7 +47,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => {
+      render={props => {
         if (authState !== AuthState.SignedIn && !loading && !user) {
           // not logged in so redirect to login page with the return url
           return (
@@ -77,7 +73,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   // );
 };
 
-const useComponentWillMount = (cb) => {
+const useComponentWillMount = cb => {
   const willMount = useRef(true);
 
   if (willMount.current) cb();

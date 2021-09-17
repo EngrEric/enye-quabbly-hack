@@ -1,50 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ApplicationMenu = () => {
+const ApplicationMenu = ({setVisible}) => {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-1 mx-3 my-4 text-lg'>
-      <div className='relative mt-6 border rounded-lg mr-6  ml-3 col-span-2'>
-        <div className='absolute top-4 left-3 pl-2'>
-          <i className='fa fa-search text-gray-400 z-20 hover:text-gray-500' />{' '}
-        </div>
-        <input
-          type='text'
-          onChange={() => {}}
-          className='h-14 w-full pl-14 pr-20 rounded-lg z-0 focus:shadow focus:outline-none'
-          placeholder='Search'
-        />
-      </div>
-      <div className='d-flex mt-6'>
-        {/* <button className='btn-white mr-5'>
-      <button className='btn-white mr-5 border-primary text-primary'>
-        <i className='fas fa-filter mr-2' /> {FILTER}
-      </button> */}
-
-        <div className='group inline-block mr-5 z-50'>
-          <button className='outline-none text-lg px-5 rounded-md py-3 text-gray-500 border font-bold'>
-            <span className='pr-1 font-semibold flex-1'>
-              Export <i className='fas fa-sort-down ml-2' />
-            </span>
+    <div className='flex pb-5 pt-2'>
+          <form className='flex-1 relative'>
+            <input
+              type='text'
+              className='text-base py-2 px-5 pl-12 block w-full outline-none focus:outline-none ring-1 rounded-lg ring-gray-400 focus:ring-2 focus:ring-blue-300 duta'
+            />
+            <label
+              htmlFor='search'
+              className='absolute top-0 bottom-0 h-full left-0 px-5 flex items-center text-gray-400'
+            >
+              <i className='fa fa-search'></i>
+            </label>
+            <button className='hidden'>submit</button>
+          </form>
+          <button className='text-primary flex items-center bg-active font-semibold ml-3 px-5 py-2 rounded-lg duration-200 hover:bg-opacity-80 text-sm'>
+            Export
+            <i className='fa fa-sort-down text-primary ml-3'></i>
           </button>
-          <ul
-            className='bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-transition duration-150 ease-in-out origin-top w-36 z-40'
+          <button
+            onClick={() => setVisible(true)}
+            className='text-white bg-primary px-5 py-2 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'
           >
-            <li className='rounded-sm px-4 py-2 cursor-pointer hover:bg-gray-100'>
-              Amount
-            </li>
-            <li className='rounded-sm px-4 py-2 cursor-pointer hover:bg-gray-100'>
-              Status
-            </li>
-          </ul>
+            <i className='fa fa-plus mr-3'></i>
+            Add Customer
+          </button>
         </div>
-
-        <button className='text-white bg-primary mr-3 px-5 py-3 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'>
-          <i className='fas fa-plus mr-2'></i> Add Customer
-        </button>
-      </div>
-    </div>
   );
 };
 

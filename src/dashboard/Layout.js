@@ -7,14 +7,16 @@ import Sidebar from './Sidebar';
 import Dashboard from './Index';
 import Customers from '../pages/customers/Customers';
 import Auth from '@aws-amplify/auth';
+import AddCustomer from './AddCustomer';
 import { Link } from 'react-router-dom';
+import Marking from './Marking';
 
 const Layout = ({ location, user }) => {
   const [openUserMenu, setUserMenu] = useState(false)
   const history = useHistory()
   const { path: _path } = useRouteMatch();
   const [userInfo, setUserInfo] = useState(false);
-
+  const [visible, setVisible] = useState(false);
   const routes = [
     {
       path: _path,
@@ -28,7 +30,7 @@ const Layout = ({ location, user }) => {
     {
       path: _path + '/marking',
       //Replace with desired component
-      comp: Customers,
+      comp: Marking,
     },
     {
       path: _path + '/settings',
@@ -61,7 +63,7 @@ const Layout = ({ location, user }) => {
   }
 
   return (
-    <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
+    <div className='flex bg-gray-100 flex-col h-screen'>
       <nav className=' bg-white py-2'>
         <div className='flex items-center'>
           <div
@@ -104,7 +106,10 @@ const Layout = ({ location, user }) => {
                   </button>
                 </form>
                 {location.pathname === '/dashboard' ? (
-                  <button className='text-white bg-primary mr-3 px-5 py-2 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'>
+                  <button
+                    onClick={() => setVisible(true)}
+                    className='text-white bg-primary mr-3 px-5 py-2 rounded-lg ml-3 duration-200 hover:bg-opacity-80 text-sm'
+                  >
                     <i className='fa fa-plus mr-3'></i>
                     Add Customer
                   </button>
@@ -177,13 +182,15 @@ const Layout = ({ location, user }) => {
                   key={index}
                   path={route.path}
                   exact={route.exact}
-                  children={<route.comp />}
+                  render={() => <route.comp setVisible={setVisible} />}
                 />
               ))}
             </Switch>
           }
         </div>
       </div>
+
+      <AddCustomer setVisible={setVisible} visible={visible} />
     </div>
   );
 };

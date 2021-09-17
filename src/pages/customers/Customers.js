@@ -20,7 +20,7 @@ const rowSelection = {
   }),
 };
 
-const Customers = () => {
+const Customers = ({setVisible}) => {
   const [selectionType, setSelectionType] = useState('checkbox');
 
   const [pagination, setPagination] = useState({
@@ -30,10 +30,9 @@ const Customers = () => {
   });
   const loading = false;
   return (
-    <Layout>
-      <div className='w-full flex-grow py-4 bg-white'>
-        <ApplicationMenu />
-        <div className='mt-8 mb-16 px-4 overflow-x-auto z-40'>
+      <div className='w-full p-5'>
+        <ApplicationMenu setVisible={setVisible} />
+        <div className='mb-16 overflow-x-auto z-40'>
           <Table
             rowSelection={{
               type: 'checkbox',
@@ -47,7 +46,6 @@ const Customers = () => {
           />
         </div>
       </div>
-    </Layout>
   );
 };
 
