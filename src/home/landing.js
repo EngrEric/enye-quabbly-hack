@@ -34,13 +34,14 @@ const Landing = () => {
 
       <div className='hidden md:block w-full md:w-1/2 mb-5 md:pt-20 pt-10'>
         <img src={homeImg} alt='landing' />
-        {/* <img
+        
+      </div>
+      <div className='w-2/3 flex items-center justify-center mb-5 mx-auto shadow-xl py-10'>
+      <img
             src={location}
             className='inline relative left-9'
             alt='locations'
-          /> */}
-      </div>
-      <div className='w-2/3 flex items-center justify-center mb-5 mx-auto shadow-xl py-10'>
+          />
         <input
           className='border h-12 px-10 outline-none rounded-md border-primary mr-10'
           placeholder='Enter Location'
