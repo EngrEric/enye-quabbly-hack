@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router';
+import { Route, Switch, useRouteMatch,useHistory } from 'react-router';
 
 import userProfile from '../images/user.png';
 import calendar from '../images/calendar.svg';
@@ -7,8 +7,11 @@ import Sidebar from './Sidebar';
 import Dashboard from './Index';
 import Customers from '../pages/customers/Customers';
 import Auth from '@aws-amplify/auth';
+import { Link } from 'react-router-dom';
 
 const Layout = ({ location, user }) => {
+  const [openUserMenu, setUserMenu] = useState(false)
+  const history = useHistory()
   const { path: _path } = useRouteMatch();
   const [userInfo, setUserInfo] = useState(false);
 
@@ -48,6 +51,14 @@ const Layout = ({ location, user }) => {
     const user = await Auth.currentUserInfo();
     setUserInfo(user);
   }, []);
+
+
+
+  async function logOut() {
+    await Auth.signOut();
+    setUserInfo(false);
+    history.push('/login');
+  }
 
   return (
     <div style={{ background: '#E5E5E5' }} className='flex flex-col h-screen'>
@@ -106,7 +117,8 @@ const Layout = ({ location, user }) => {
                 <button className='outline-none mx-3 focus:outline-none '>
                   <i className='fa fa-bell'></i>
                 </button>
-                <div className='flex ml-3 items-center cursor-pointer'>
+        <div className='relative w-1/2 flex justify-end'>
+        <div onClick={() => setUserMenu(prev => !prev)} className='flex ml-3 items-center cursor-pointer'>
                   <figure className='mr-3'>
                     <img
                       src={userProfile}
@@ -116,6 +128,39 @@ const Layout = ({ location, user }) => {
                   </figure>
                   <i className='fa fa-angle-down'></i>
                 </div>
+          {/* <button className="h-full w-full fixed inset-0 cursor-default" /> */}
+          {openUserMenu && (
+            <div
+              onClick={() => setUserMenu(prev => !prev)}
+              style={{ zIndex: '1' }}
+              className='fixed inset-0'
+            />
+          )}
+          <div
+            className={`${
+              !openUserMenu && 'hidden'
+            } absolute z-20 top-0 bg-white rounded-lg shadow-lg py-2 mt-14`}
+          >
+            <Link to='/' className='block px-4 py-2 text-black'>
+              <i className='fas fa-user mr-2' /> Profile
+            </Link>
+            <button
+              onClick={logOut}
+              style={{ outline: 0 }}
+              className='w-full text-left block px-4 py-2 text-red-600'
+            >
+              <i className='fas fa-sign-out-alt mr-2' />
+              LogOut
+            </button>
+          </div>
+        </div>
+
+
+
+
+
+
+
               </div>
             </div>
           </div>

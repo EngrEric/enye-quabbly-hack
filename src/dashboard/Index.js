@@ -4,6 +4,8 @@ import card from '../images/card.svg';
 import 'antd/dist/antd.min.css';
 import { columns, dataSource } from './constants';
 import Auth from '@aws-amplify/auth';
+import BarChart from '../components/chartjs/BarChart'
+import LineChart from '../components/chartjs/LineChart';
 
 const Dashboard = () => {
   const [userInfo, setUserInfo] = useState(false);
@@ -38,10 +40,10 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='grid grid-cols-12 gap-5'>
+      <div className='grid grid-cols-12 gap-5 bg-white'>
         <div className='col-span-8 p-3'>
           <div className='grid gap-7 grid-cols-3'>
-            <div className='h-32 bg-white rounded-lg flex flex-col justify-center'>
+            <div className='h-32 rounded-lg flex flex-col justify-center'>
               <div className='flex justify-between px-5'>
                 <div className='h-11 w-11 rounded-full bg-primary bg-opacity-20 grid place-content-center'>
                   <i className='fa fa-users text-primary'></i>
@@ -91,7 +93,15 @@ const Dashboard = () => {
             <h4 className='font-lato text-base font-semibold mb-3'>
               Marking List
             </h4>
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table dataSource={dataSource} columns={columns} />
+          </div>
+          <div className='flex flex-wrap mt-5 mb-10'>
+           <div className="w-1/4 px-4">
+            <BarChart/>
+           </div>
+           <div className="w-3/4 px-4">
+            <LineChart/>
+           </div>
           </div>
         </div>
         <div className='col-span-4 py-3 bg-white'>
