@@ -7,28 +7,24 @@ import Posform from '../home/posform';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import Login from '../home/login';
 import Dashboard from '../dashboard/Index';
-import Marking from '../dashboard/Marking';
+import Layout from '../dashboard/Layout';
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <NavBar />
-      <Suspense fallback={<h1>Loading</h1>}>
-        <Switch>
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/login' component={Login} />
-          <PrivateRoute exact path='/dashboard' component={Dashboard} />
-          <PrivateRoute exact path='/marking' component={Marking} />
-          <Posform exact path='/posform' component={Dashboard} />
-          {/* <PrivateRoute exact path='/customers' component={Customers} />
-        <PrivateRoute exact path='/settings' component={Customers} />
-        <PrivateRoute exact path='/contact' component={Customers} />
-        <PrivateRoute exact path='/terms' component={Customers} />
-        <PrivateRoute exact path='/markings' component={Customers} /> */}
-          <Posform exact path='/posform' component={Dashboard} />
-          <Route exact path='*' component={<h1>Not found</h1>} />
-        </Switch>
-      </Suspense>
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route exact path='/login' component={Login} />
+        <PrivateRoute path='/dashboard' component={Layout} />
+        {/* <PrivateRoute exact path='/customers' component={Customers} />
+      <PrivateRoute exact path='/settings' component={Customers} />
+      <PrivateRoute exact path='/contact' component={Customers} />
+      <PrivateRoute exact path='/terms' component={Customers} />
+      <PrivateRoute exact path='/markings' component={Customers} /> */}
+        <Posform exact path='/posform' component={Dashboard} />
+        <Route exact path='*' component={<h1>Not found</h1>} />
+      </Switch>
     </BrowserRouter>
   );
 };

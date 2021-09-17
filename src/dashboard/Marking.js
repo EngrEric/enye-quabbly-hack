@@ -4,8 +4,7 @@ import Layout from './Layout';
 import 'antd/dist/antd.min.css';
 import AddCustomer from './AddCustomer';
 
-const Marking = () => {
-  const [visible, setVisible] = useState(false);
+const Marking = ({ setVisible }) => {
   const columns = [
     {
       title: <span className='font-lato text-sm font-semibold'>Name</span>,
@@ -170,7 +169,6 @@ const Marking = () => {
         </div>
         <Table dataSource={dataSource} columns={columns} />;
       </div>
-      <AddCustomer setVisible={setVisible} visible={visible} />
     </>
   );
 };

@@ -13,6 +13,7 @@ const Sidebar = () => {
         <li>
           <NavLink
             to='/dashboard'
+            exact
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
@@ -31,6 +32,7 @@ const Sidebar = () => {
         <li>
           <NavLink
             to='/dashboard/marking'
+            exact
             activeClassName='text-neutral-dark border-l-4 border-primary bg-active font-semibold'
             className='px-10 font-lato w-full mt-3 hover:bg-blue-50 duration-200 text-neutral-light flex py-3'
           >
