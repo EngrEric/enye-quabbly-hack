@@ -28,3 +28,37 @@
   --amplify-primary-tint: #32a4e6;
   --amplify-primary-shade: #32a4e6;
 }
+li > ul {
+  transform: translatex(100%) scale(0);
+}
+
+li:hover > ul {
+  transform: translatex(101%) scale(1);
+}
+
+li > button svg {
+  transform: rotate(-90deg);
+}
+
+li:hover > button svg {
+  transform: rotate(-270deg);
+}
+
+.group:hover .group-hover\:scale-100 {
+  transform: scale(1);
+}
+
+.group:hover .group-hover\:-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.scale-0 {
+  transform: scale(0);
+}
+
+.min-w-32 {
+  min-width: 8rem;
+}
+.ant-modal-wrap.ant-modal-centered > .ant-modal > .ant-modal-content {
+  border-radius: 8px !important;
+}

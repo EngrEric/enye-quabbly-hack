@@ -1,124 +1,43 @@
-import { AmplifySignOut } from '@aws-amplify/ui-react';
-import React from 'react';
-import { Table } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { notification, Table } from 'antd';
 import card from '../images/card.svg';
-import Layout from './Layout';
 import 'antd/dist/antd.min.css';
+import { columns, dataSource } from './constants';
+import Auth from '@aws-amplify/auth';
 
 const Dashboard = () => {
-  const columns = [
-    {
-      title: <span className='font-lato text-sm font-semibold'>Name</span>,
-      dataIndex: 'name',
-      key: 'name',
-      render: name => <span className='font-lato text-sm'>{name}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>ID</span>,
-      dataIndex: 'id',
-      key: 'id',
-      render: id => <span className='font-lato text-sm'>{id}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Ajot Plan</span>,
-      dataIndex: 'plan',
-      key: 'plan',
-      render: plan => <span className='font-lato text-sm'>{plan}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Duration</span>,
-      dataIndex: 'duration',
-      key: 'duration',
-      render: duration => <span className='font-lato text-sm'>{duration}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Amount</span>,
-      dataIndex: 'amount',
-      key: 'amount',
-      render: amount => <span className='font-lato text-sm'>{amount}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Date</span>,
-      dataIndex: 'date',
-      key: 'date',
-      render: date => (
-        <span className='font-lato text-sm'>
-          {new Date(date).getDate()}/{new Date(date).getMonth()}/
-          {new Date(date).getFullYear()}
-        </span>
-      ),
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Status</span>,
-      dataIndex: 'status',
-      key: 'status',
-      render: status => <span className='font-lato text-sm'>{status}</span>,
-    },
-    {
-      title: <span className='font-lato text-sm font-semibold'>Action</span>,
-      render: record => (
-        <button className='focus:outline-none outline-none cursor-pointer'>
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z'
-              fill='#B7BCC2'
-            />
-          </svg>
-        </button>
-      ),
-    },
-  ];
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      id: 32,
-      plan: 'Short Plan',
-      duration: '2 Months',
-      date: new Date(),
-      amount: '₦5000/day',
-      status: 'Paid',
-    },
-    {
-      key: '1',
-      name: 'Mike',
-      id: 32,
-      plan: 'Short Plan',
-      duration: '2 Months',
-      date: new Date(),
-      amount: '₦5000/day',
-      status: 'Paid',
-    },
-    {
-      key: '1',
-      name: 'Mike',
-      id: 32,
-      plan: 'Short Plan',
-      duration: '2 Months',
-      date: new Date(),
-      amount: '₦5000/day',
-      status: 'Paid',
-    },
-    {
-      key: '1',
-      name: 'Mike',
-      id: 32,
-      plan: 'Short Plan',
-      duration: '2 Months',
-      date: new Date(),
-      amount: '₦5000/day',
-      status: 'Paid',
-    },
-  ];
+  const [userInfo, setUserInfo] = useState(false);
+  const [walletDetails, setWallet] = useState({});
+
+  async function getOrcreateWallet() {
+    const user = await Auth.currentUserInfo();
+    setUserInfo(user);
+
+    try {
+      const wallet = await fetch('https://api.getwallets.co/v1/wallets', {
+        method: 'POST',
+        body: JSON.stringify({ customer_email: user.attributes.email }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Bearer sk_live_6140a262e7e3684960079b0e6140a262e7e3684960079b0f',
+        },
+      });
+      const json = await wallet.json();
+      setWallet(json.data);
+    } catch (error) {
+      notification.error({
+        message: "An error occured, we couldn't create wallet for you",
+      });
+    }
+  }
+
+  useEffect(() => {
+    getOrcreateWallet();
+  }, []);
 
   return (
-    <Layout>
+    <>
       <div className='grid grid-cols-12 gap-5'>
         <div className='col-span-8 p-3'>
           <div className='grid gap-7 grid-cols-3'>
@@ -147,7 +66,7 @@ const Dashboard = () => {
                     Total Collection
                   </h5>
                   <h3 className='text-right text-2xl font-lato font-medium'>
-                    ₦320,000
+                    ₦{walletDetails.balance}
                   </h3>
                 </div>
               </div>
@@ -162,7 +81,7 @@ const Dashboard = () => {
                     Total Payout
                   </h5>
                   <h3 className='text-right text-2xl font-lato font-medium'>
-                    ₦220,000
+                    ₦{walletDetails.reserved_balance}
                   </h3>
                 </div>
               </div>
@@ -382,7 +301,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
